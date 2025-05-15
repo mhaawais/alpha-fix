@@ -7,7 +7,7 @@ import Hero2nd2 from '@/components/hero2nd2'
 import Hero2nd3 from '@/components/hero2nd3'
 import Footer2 from '@/components/footer2'
 
-const Rosenburg = () => {
+const Rosenberg = () => {
   return (
     <div>
        <Header2 />
@@ -21,4 +21,4 @@ const Rosenburg = () => {
   )
 }
 
-export default Rosenburg
+export default Rosenberg
