@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { name, phone, email, zip, message } = body;
 
-    const to = "awais23112001@gmail.com";
+    const to = "alphafixinc@gmail.com";
     const from = process.env.GMAIL_USER!;
     const password = process.env.GMAIL_PASS!;
 
