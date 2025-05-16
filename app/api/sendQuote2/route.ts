@@ -6,9 +6,9 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { name, phone, email, zip, message } = body;
 
-    const to = "alphafixinc@gmail.com";
-    const from = process.env.GMAIL_USER!;
-    const password = process.env.GMAIL_PASS!;
+    const to = "Mygadgettechs@gmail.com";
+    const from = process.env.GMAIL_USER_NAME!;
+    const password = process.env.GMAIL_PASS_KEY!;
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -22,9 +22,9 @@ export async function POST(req: NextRequest) {
       from,
       to,
       replyTo: email,
-      subject: "New Quote Request from Richmond - Alpha-Fix",
+      subject: "New Quote Request from Rosenberg - Alpha-Fix",
       html: `
-        <h2>Quote Request From Richmond</h2>
+        <h2>Quote Request From Rosenberg</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Email:</strong> ${email}</p>
