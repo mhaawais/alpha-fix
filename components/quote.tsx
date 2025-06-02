@@ -5,9 +5,15 @@ import React, { useState } from "react";
 const Quote = ({
   setStep,
   setFormData,
+  selectedDevice,
+  selectedModel,
+  selectedIssue,
 }: {
   setStep: (step: number) => void;
   setFormData: (data: any) => void;
+  selectedDevice: string;
+  selectedModel: string;
+  selectedIssue: string;
 }) => {
   const [formDataLocal, setFormDataLocal] = useState({
     name: "",
@@ -26,32 +32,66 @@ const Quote = ({
     setFormDataLocal((prev) => ({ ...prev, [name]: value }));
   };
 
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const res = await fetch("/api/sendQuote", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formDataLocal),
+  //     });
+
+  //     const data = await res.json();
+  //     console.log("Server response:", data);
+
+  //     if (res.ok) {
+  //       setSubmitted(true);
+  //       setFormData(formDataLocal); // Pass data to RepairWizard
+  //     } else {
+  //       alert("Failed to send email: " + data.error);
+  //     }
+  //   } catch (error) {
+  //     console.error("❌ Submission failed", error);
+  //     alert("An error occurred. Please try again.");
+  //   }
+  // };
+
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await fetch("/api/sendQuote", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formDataLocal),
-      });
-
-      const data = await res.json();
-      console.log("Server response:", data);
-
-      if (res.ok) {
-        setSubmitted(true);
-        setFormData(formDataLocal); // Pass data to RepairWizard
-      } else {
-        alert("Failed to send email: " + data.error);
-      }
-    } catch (error) {
-      console.error("❌ Submission failed", error);
-      alert("An error occurred. Please try again.");
-    }
+  const payload = {
+    ...formDataLocal,
+    device: selectedDevice,
+    model: selectedModel,
+    issue: selectedIssue,
   };
+
+  try {
+    const res = await fetch("/api/sendQuote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+    console.log("Server response:", data);
+
+    if (res.ok) {
+      setSubmitted(true);
+      setFormData(payload);
+    } else {
+      alert("Failed to send email: " + data.error);
+    }
+  } catch (error) {
+    console.error("❌ Submission failed", error);
+    alert("An error occurred. Please try again.");
+  }
+};
+
 
   return (
     <div className="bg-[#f9f9f9] flex items-center justify-center px-4 py-6">

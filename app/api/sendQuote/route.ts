@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, phone, email, zip, message } = body;
+    const { name, phone, email, zip, message, device, model, issue } = body;
 
     const to = "alphafixinc@gmail.com";
     const from = process.env.GMAIL_USER!;
@@ -30,6 +30,10 @@ export async function POST(req: NextRequest) {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Zip Code:</strong> ${zip}</p>
         <p><strong>Message:</strong> ${message}</p>
+         <hr />
+        <p><strong>Device:</strong> ${device}</p>
+        <p><strong>Model:</strong> ${model}</p>
+        <p><strong>Issue:</strong> ${issue}</p>
       `,
     });
 

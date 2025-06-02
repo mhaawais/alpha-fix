@@ -948,7 +948,12 @@ const RepairWizard = () => {
           <div className="flex flex-col lg:flex-row gap-6 w-full">
             {/* Quote Form Section */}
             <div className="w-full lg:flex-[3]">
-              <Quote setStep={setStep} setFormData={setFormData} />
+              <Quote setStep={setStep} 
+              setFormData={setFormData} 
+              selectedDevice={selectedDevice}
+              selectedModel={selectedModel}
+              selectedIssue={selectedIssue}
+              />
             </div>
 
             {/* Sidebar Section */}
